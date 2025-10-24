@@ -1,4 +1,4 @@
-name: YouTube Analytics Weekly
+name: YouTube Analytics Daily
 
 on:
   schedule:
@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  fetch-and-upload:
+  fetch-and-save:
     runs-on: ubuntu-latest
     defaults:
       run:
