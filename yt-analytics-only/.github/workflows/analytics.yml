@@ -1,0 +1,33 @@
+name: YouTube Analytics Weekly
+
+on:
+  schedule:
+    - cron: '30 6 * * *'
+  workflow_dispatch:
+
+jobs:
+  fetch-and-upload:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: yt-analytics-only
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: yt-analytics-only/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Fetch YouTube analytics
+        run: npm run yt:analytics
+        env:
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}

@@ -1,0 +1,15 @@
+{
+  "name": "yt-analytics-only",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "yt:analytics": "node src/fetch_yta.js",
+    "yt:get-refresh-token": "node src/generate_refresh_token.js"
+  },
+  "dependencies": {
+    "date-fns": "^3.6.0",
+    "dotenv": "^16.4.5",
+    "fs-extra": "^11.2.0",
+    "undici": "^6.18.1"
+  }
+}
